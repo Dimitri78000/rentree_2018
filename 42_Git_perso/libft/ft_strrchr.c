@@ -12,7 +12,7 @@
 
 #include <string.h>
 
-char	*ft_strchr(char *str, int c)
+char	*ft_strrchr(char *str, int c)
 {
 	int i;
 	int i_last;
@@ -29,4 +29,3 @@ char	*ft_strchr(char *str, int c)
 		return (NULL);
 	return (&str[i_last]);
 }
-
