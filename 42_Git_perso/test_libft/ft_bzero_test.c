@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_bzero_test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dleurs <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 20:40:32 by dleurs            #+#    #+#             */
-/*   Updated: 2018/11/06 20:40:33 by dleurs           ###   ########.fr       */
+/*   Created: 2018/11/12 13:55:16 by dleurs            #+#    #+#             */
+/*   Updated: 2018/11/12 13:55:17 by dleurs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
-{
-	int i;
+#include <stdio.h>
+#include <string.h>
 
-	i = 0;
-	while (src[i] != '\0' && i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+void				ft_bzero(void *s, size_t n);
+
+int main(void)
+{
+	char str[20];
+	strcpy(str, "Hello World !");
+	printf("%s\n", str);
+	bzero(str, 6);
+	printf("%s\n", str);
+	return (0);
 }

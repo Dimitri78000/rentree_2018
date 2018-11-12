@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dleurs <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 20:40:32 by dleurs            #+#    #+#             */
-/*   Updated: 2018/11/06 20:40:33 by dleurs           ###   ########.fr       */
+/*   Created: 2018/11/12 13:32:26 by dleurs            #+#    #+#             */
+/*   Updated: 2018/11/12 13:32:27 by dleurs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
-{
-	int i;
+#include "libft.h"
 
-	i = 0;
-	while (src[i] != '\0' && i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+void	ft_bzero(void *s, size_t n)
+{
+	ft_memset(s, 0, n);
 }

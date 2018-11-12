@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dleurs <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 20:40:32 by dleurs            #+#    #+#             */
-/*   Updated: 2018/11/06 20:40:33 by dleurs           ###   ########.fr       */
+/*   Created: 2018/11/12 15:43:19 by dleurs            #+#    #+#             */
+/*   Updated: 2018/11/12 15:43:21 by dleurs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
-{
-	int i;
+#include "string.h"
 
-	i = 0;
-	while (src[i] != '\0' && i < n)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	void *dst_start;
+
+	dst_start = dst;
+	if (dst < src)
+		while ((size_t)(dst - dst_start) < len)
+			*(unsigned char *)dst++ = *(unsigned char *)src++;
+	else
+		while (len)
+		{
+			len--;
+			((unsigned char *)dst)[len] = ((unsigned char *)src)[len];
+		}
+	return (dst_start);
 }

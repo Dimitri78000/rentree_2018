@@ -10,15 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-SRC = ft_atoi.c
-OBJECT_O = ft_atoi.o
-HEADER = includes
+NAME = libft.a 
+SRC = ft_bzero.c ft_memset.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c
+OBJECT_O = ft_bzero.o ft_memset.o ft_memcpy.o ft_memccpy.o ft_memmove.o ft_memchr.o
 
 all: $(NAME)
 
 $(NAME):
-	gcc -c -I$(HEADER) $(SRC)
+	gcc -c $(SRC)
 	ar rc $(NAME) $(OBJECT_O)
 	ranlib $(NAME)
 
