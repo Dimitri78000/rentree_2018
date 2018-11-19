@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dleurs <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 20:09:47 by dleurs            #+#    #+#             */
-/*   Updated: 2018/11/06 20:09:48 by dleurs           ###   ########.fr       */
+/*   Created: 2018/11/12 18:40:56 by dleurs            #+#    #+#             */
+/*   Updated: 2018/11/12 18:40:57 by dleurs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char		*ft_strcpy(char *dst, const char *src)
+size_t		ft_strlcat(char *dst, const char *src, size_t size)
 {
-	int i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
+	
 }

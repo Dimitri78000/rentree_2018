@@ -10,20 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncat(char *dest, char *src, int nb)
+#include "libft.h"
+
+char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	int i;
-	int i_src;
+	size_t i;
+	size_t i_s2;
 
 	i = 0;
-	while (dest[i] != '\0')
+	while (s1[i] != '\0')
 		i++;
-	i_src = 0;
-	while (src[i_src] != '\0' && i_src < nb)
+	i_s2 = 0;
+	while (s2[i_s2] != '\0' && i_s2 < n)
 	{
-		dest[i + i_src] = src[i_src];
-		i_src++;
+		s1[i + i_s2] = s2[i_s2];
+		i_s2++;
 	}
-	dest[i + i_src] = '\0';
-	return (dest);
+	s1[i + i_s2] = '\0';
+	return (s1);
 }

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memchr_test.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dleurs <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 20:09:47 by dleurs            #+#    #+#             */
-/*   Updated: 2018/11/06 20:09:48 by dleurs           ###   ########.fr       */
+/*   Created: 2018/11/12 16:56:28 by dleurs            #+#    #+#             */
+/*   Updated: 2018/11/12 16:56:30 by dleurs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char		*ft_strcpy(char *dst, const char *src)
-{
-	int i;
+#include <stdio.h>
+#include <string.h>
 
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
+void	*ft_memchr(const void *s, int c, size_t n);
+
+int main (void)
+{
+	char str1[20];
+	strcpy(str1, "Hello World!");
+	printf("%s\n", memchr(str1, 'W', 20));
+	printf("%s\n", ft_memchr(str1, 'W', 20));
+	return (0);
 }

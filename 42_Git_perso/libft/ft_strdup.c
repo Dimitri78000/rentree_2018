@@ -12,14 +12,14 @@
 
 #include <stdlib.h>
 
-char	*ft_strdup(char *src)
+char		*ft_strdup(const char *s1)
 {
 	int		len;
 	char	*str_res;
 	int		i;
 
 	len = 0;
-	while (src[len] != '\0')
+	while (s1[len] != '\0')
 		len++;
 	str_res = (char*)malloc(sizeof(char) * (len + 1));
 	if (str_res == NULL)
@@ -27,7 +27,7 @@ char	*ft_strdup(char *src)
 	i = 0;
 	while (i < len)
 	{
-		str_res[i] = src[i];
+		str_res[i] = s1[i];
 		i++;
 	}
 	str_res[i] = '\0';

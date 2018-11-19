@@ -11,18 +11,33 @@
 # **************************************************************************** #
 
 NAME = libft.a 
-SRC = ft_bzero.c ft_memset.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c
-OBJECT_O = ft_bzero.o ft_memset.o ft_memcpy.o ft_memccpy.o ft_memmove.o ft_memchr.o
+SRC = ft_bzero.c \
+	ft_memset.c \
+	ft_memcpy.c \
+	ft_memccpy.c \
+	ft_memmove.c \
+	ft_memchr.c \
+	ft_memcmp.c \
+	ft_strlen.c \
+	ft_strdup.c \
+	ft_strcpy.c \
+	ft_strncpy.c \
+	ft_strcat.c 
+
+OBJ = $(SRC:.c=.o)
+
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME):
-	gcc -c $(SRC)
-	ar rc $(NAME) $(OBJECT_O)
-	ranlib $(NAME)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	/bin/rm -f $(OBJECT_O)
+	/bin/rm -f $(OBJ)
 
 fclean: clean
 	/bin/rm -f $(NAME)
