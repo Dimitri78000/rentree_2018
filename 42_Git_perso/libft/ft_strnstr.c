@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dleurs <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 20:22:09 by dleurs            #+#    #+#             */
-/*   Updated: 2018/11/06 20:22:11 by dleurs           ###   ########.fr       */
+/*   Created: 2018/11/24 17:19:14 by dleurs            #+#    #+#             */
+/*   Updated: 2018/11/24 17:19:16 by dleurs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
-char	*ft_strstr(const char *haystack, const char *needle)
+char		*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	unsigned int	i_str;
 	unsigned int	i_word;
@@ -28,10 +27,10 @@ char	*ft_strstr(const char *haystack, const char *needle)
 	while (i_str <= len_str)
 	{
 		i_word = 0;
-		while (haystack[i_str + i_word] == needle[i_word])
+		while (haystack[i_str + i_word] == needle[i_word] && i_word < len)
 		{
 			i_word++;
-			if (needle[i_word] == '\0')
+			if (i_word == len_word)
 				return ((char *)&haystack[i_str]);
 		}
 		i_str++;

@@ -10,22 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <string.h>
 
-char	*ft_strrchr(char *str, int c)
+char	*ft_strrchr(const char *s, int c)
 {
 	int i;
 	int i_last;
 
 	i = 0;
 	i_last = -1;
-	while (str[i] != '\0')
+	if ((char)c == '\0')
 	{
-		if (str[i] == c)
+		i_last = ft_strlen(s);
+		return ((char *)&s[i_last]);
+	}
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
 			i_last = i;
 		i++;
 	}
 	if (i_last == -1)
 		return (NULL);
-	return (&str[i_last]);
+	return ((char *)&s[i_last]);
 }
