@@ -27,10 +27,10 @@ char		*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	while (i_str <= len_str)
 	{
 		i_word = 0;
-		while (haystack[i_str + i_word] == needle[i_word] && i_word < len)
+		while (haystack[i_str + i_word] == needle[i_word] && len--)
 		{
 			i_word++;
-			if (i_word == len_word)
+			if (needle[i_word] == '\0')
 				return ((char *)&haystack[i_str]);
 		}
 		i_str++;

@@ -10,20 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strcmp(const char *s1, const char *s2);
+#include "libft.h"
 
-int		ft_atoi(char *str)
+int		ft_atoi(const char *str)
 {
-	int nbr;
-	int i;
-	int sign;
+	size_t	nbr;
+	int		i;
+	int		sign;
 
 	i = 0;
 	nbr = 0;
 	sign = 1;
-	if (ft_strcmp(str, "-2147483648") == 0)
-		return (-2147483648);
-	while (str[i] == '-')
+	while (str[i] == '\t' || str[i] == '\r' || str[i] == '+' ||
+	str[i] == '\v' || str[i] == '\f' || str[i] == ' ' || str[i] == '\n')
+		i++;
+	if (str[i] == '-')
 	{
 		sign = sign * (-1);
 		i++;
@@ -31,6 +32,10 @@ int		ft_atoi(char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		nbr = nbr * 10 + str[i] - 48;
+		if (sign == 1 && nbr > INT64_MAX)
+			return (-1);
+		if (sign == -1 && nbr > (size_t)(INT64_MAX) + 1)
+			return (0);
 		i++;
 	}
 	return (sign * nbr);

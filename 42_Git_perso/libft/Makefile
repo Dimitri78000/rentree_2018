@@ -28,7 +28,14 @@ SRC = ft_bzero.c \
 	ft_strchr.c \
 	ft_strrchr.c \
 	ft_strstr.c \
-	ft_strnstr.c
+	ft_strnstr.c \
+	ft_strcmp.c \
+	ft_strncmp.c \
+	ft_atoi.c \
+	ft_isalpha.c \
+	ft_isdigit.c \
+	ft_isalnum.c \
+	ft_isascii.c
 
 OBJ = $(SRC:.c=.o)
 

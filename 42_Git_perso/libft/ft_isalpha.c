@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dleurs <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/06 20:01:37 by dleurs            #+#    #+#             */
-/*   Updated: 2018/11/06 20:01:38 by dleurs           ###   ########.fr       */
+/*   Created: 2018/11/24 19:36:09 by dleurs            #+#    #+#             */
+/*   Updated: 2018/11/24 19:36:11 by dleurs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	ft_isalpha(int c)
 {
-	int i;
-
-	i = 0;
-	while ((unsigned char)s1[i] == (unsigned char)s2[i])
-	{
-		i++;
-		if (s1[i] == '\0' && s2[i] == '\0')
-			return (0);
-	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return ((65 <= c && c <= 90) || (97 <= c && c <= 122));
 }
