@@ -47,7 +47,12 @@ SRC = ft_bzero.c \
 	ft_striter.c \
 	ft_striteri.c \
 	ft_strmap.c \
-	ft_strmapi.c
+	ft_strmapi.c \
+	ft_strequ.c \
+	ft_strnequ.c \
+	ft_strsub.c \
+	ft_strjoin.c \
+	ft_strstrim.c
 
 OBJ = $(SRC:.c=.o)
 

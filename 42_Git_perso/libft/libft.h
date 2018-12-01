@@ -14,9 +14,6 @@
 # define LIBFT_H
 
 # include <string.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
 # include <stdlib.h>
 
 void		*ft_memset(void *b, int c, size_t len);
@@ -57,5 +54,10 @@ void		ft_striter(char *s, void (*f)(char *));
 void		ft_striteri(char *s, void (*f)(unsigned int, char *));
 char		*ft_strmap(char const *s, char (*f)(char));
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+int			ft_strequ(char const *s1, char const *s2);
+char		*ft_strsub(char const *s, unsigned int start, size_t len);
+char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strstrim(char const *s);
+char		*ft_strtrim(char const *s);
 
 #endif
