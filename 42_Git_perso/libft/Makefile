@@ -39,7 +39,15 @@ SRC = ft_bzero.c \
 	ft_isprint.c \
 	ft_toupper.c \
 	ft_tolower.c \
-	ft_memalloc.c
+	ft_memalloc.c \
+	ft_memdel.c \
+	ft_strnew.c \
+	ft_strdel.c \
+	ft_strclr.c \
+	ft_striter.c \
+	ft_striteri.c \
+	ft_strmap.c \
+	ft_strmapi.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dleurs <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/24 19:54:21 by dleurs            #+#    #+#             */
-/*   Updated: 2018/11/24 19:54:22 by dleurs           ###   ########.fr       */
+/*   Created: 2018/12/01 18:40:48 by dleurs            #+#    #+#             */
+/*   Updated: 2018/12/01 18:40:49 by dleurs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	*ft_memalloc(size_t size)
+void	ft_strdel(char **as)
 {
-	void	*memory;
-
-	memory = (void *)malloc(size * sizeof(size_t));
-	if (memory == NULL)
-		return (NULL);
-	ft_bzero(memory, size);
-	return (memory);
+	if (as)
+	{
+		free(*as);
+		*as = NULL;
+	}
 }
