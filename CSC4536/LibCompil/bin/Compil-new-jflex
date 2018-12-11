@@ -1,0 +1,23 @@
+#!/bin/bash
+if [ "$#" -ne 1 ] ;  then
+    echo "Usage: $0 dirextory-name" >&2
+    exit
+fi
+if [ -e $1 ] ;  then
+    echo "$1 existe !" >&2
+    exit
+fi
+
+echo "Creation d'un projet Jflex-Alone dans le repertoire $1"
+
+readlinkf() { perl -MCwd -le 'print Cwd::abs_path shift' "$1";}
+
+LIBDIR=$(dirname $(dirname $(readlinkf $0 ) ) )
+ROOT=$1
+
+/bin/mkdir ${ROOT}
+/bin/cp    ${LIBDIR}/gen/Makefile.Jflex      ${ROOT}/Makefile
+/bin/ln -s ${LIBDIR}/lib/jflex.jar           ${ROOT}/
+/bin/cp    ${LIBDIR}/spec/Jflex.include      ${ROOT}/
+/bin/cp    ${LIBDIR}/spec/sample0.jflex      ${ROOT}/
+echo "testing : cd $1; make ; make sample0; make run;"

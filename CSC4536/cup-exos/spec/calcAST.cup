@@ -1,0 +1,49 @@
+init with {: System.out.println("Calculatrice non ambiguë : AST complet"); :}
+
+parser code {:
+   public static SymbolTable symTab = new SymbolTable() ;
+     /* table de symbole "exportable" */
+   AST N(String name, ASTNode ... fils) { return new AST(name, fils); }
+     /* Macro d'ecriture pour nes AST() */
+:}
+
+terminal NL, LPAR, RPAR, COMMA, FMIN, FMAX;
+terminal Integer ENTIER;
+terminal PLUS, MOINS, MULT, DIV, MOD;
+terminal AFFECT, CLEAN;
+terminal String VAR;
+
+nonterminal lignes;
+nonterminal AST expr;
+nonterminal AST maxargs;
+
+precedence left PLUS,MOINS;
+precedence left MULT,DIV,MOD;
+
+lignes ::= /*mot vide */  {: :}
+       |  lignes error  NL  {: /* assume warning aready exists */ :}
+       |  lignes expr:e     {: for ( int i=0; i<12; i++ ) e.print(i); :}
+                        NL
+       |  lignes CLEAN       NL  {: symTab.clean();  :}
+       |  lignes CLEAN VAR:v NL  {: symTab.clean(v); :}
+       |  lignes             NL  {: /* instruction vide */ :}
+;
+
+expr ::= ENTIER:e               {: RESULT= N("Litteral", N("ENTIER") );  :}
+     | LPAR expr:e RPAR         {: RESULT= N("Parent", N("LPAR"), e , N("RPAR")) ;  :}
+     | expr:e1 PLUS expr:e2     {: RESULT= N("Plus", e1 , N("PLUS"),  e2); :}
+     | expr:e1 MOINS expr:e2    {: RESULT= N("Moins", e1 , N("MOINS"),  e2); :}
+     | expr:e1 MULT expr:e2     {: RESULT= N("Mult", e1 , N("MULT"),  e2); :}
+     | expr:e1 DIV expr:e2      {: RESULT= N("Div", e1 , N("DIV"),  e2); :}
+     | expr:e1 MOD expr:e2      {: RESULT= N("Mod", e1 , N("MOD"),  e2); :}
+     | FMIN LPAR expr:e1 COMMA expr:e2 RPAR
+                                {: RESULT=N("Min", N("FMIN"), N("LPAR"), e1, N("COMMA"), e2, N("RPAR")); :} 
+     | FMAX LPAR maxargs:e RPAR {: RESULT=N("Max", N("FMAX"), N("LPAR"), e, N("RPAR")); :} 
+     | VAR:v AFFECT expr:e      {: RESULT=N("Aff", N("VAR"), N("AFFEXT"), e ); :}
+     | VAR:v                    {: RESULT=N("Var", N("VAR")); :}
+;
+
+maxargs ::= expr:e                 {: RESULT = N("Arg", e) ; :}
+        | maxargs:e1 COMMA expr:e2 {: RESULT=N("Arglist", e1, N("COMMA"), e2)
+        ; :}
+;

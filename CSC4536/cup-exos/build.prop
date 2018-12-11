@@ -1,0 +1,20 @@
+# Proprietes pour build Ant projet CUP
+#    name    description    || default value
+
+#    NAME     Nom de base des specs || undef 
+
+#    SRCJFLEX Nom spec Jflex }} $${NAME}.jflex
+
+#    SRCCUP   Nom spec Cup   || $${NAME}.cuo  
+
+#    CUPOPT   Options supplementaire pour CUP || ||${CUPOPT}
+# CUPOPT=-locations
+
+#    PKG      Package Java des classes Jflex et Cup || 
+
+#    MAIN     Classe main() || CupMain 
+
+#    MAINDEBUG     Classe main() || CupMainDebug 
+
+#    ARGS     Arguments du main() || 
+

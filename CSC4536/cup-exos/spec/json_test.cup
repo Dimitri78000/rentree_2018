@@ -1,0 +1,49 @@
+
+action code {: int l = 0; :}
+
+terminal NUMBER, QUOTATION_MARK, STRING, TRUE, FALSE, NULL, ZERO,
+		BEGIN_ARRAY, END_ARRAY, BEGIN_OBJECT, END_OBJECT,
+		VALUE_SEP, NAME_SEP, IGNORE, NL, BLANC;
+		
+non terminal value, jsonfile, object, member, values, array;
+
+
+value::=NUMBER:n {: System.out.print(n); :} 
+		|FALSE	{: System.out.print("c est faux"); :}
+		|NULL	{: System.out.print("null"); :}
+		|TRUE	{: System.out.print("true"); :}
+		|STRING:s	{: System.out.print(s); :}
+		|object
+		|array		
+;
+
+values::=value
+		|values VALUE_SEP {: System.out.println(","); for(int j = 0; j<l; j++)
+		{ System.out.print("\t");};	:} value
+;
+
+member::= STRING:s {: System.out.print(s);	:} NAME_SEP {: System.out.print(":");	:}
+		|member VALUE_SEP {: System.out.println(":");	for(int j = 0; j<l; j++)
+		{ System.out.print("\t");};	:}
+;
+
+object::= BEGIN_OBJECT {: System.out.println("{");  :} END_OBJECT {: System.out.println("}");  :} 
+		| BEGIN_OBJECT {: l++;System.out.println("{");
+					for(int j = 0; j<l;j++)
+						{ System.out.print("\t"); };  :}  
+			member {: System.out.println("");  :} }
+			END_OBJECT {: l--;
+						for(int j = 0; j<l;j++)
+						{ System.out.print("\t"); }
+						  System.out.print("}");  :} 
+;
+
+array::= BEGIN_ARRAY {: System.out.println("[");  :}  END_ARRAY {: System.out.println("]");  :} 
+		|BEGIN_ARRAY {: System.out.println("["); 
+					l++;
+					for(int j = 0; j<l;j++){
+					 System.out.print("\t");};  :}
+		   values {: System.out.println("");  :}
+		   END_ARRAY {: l--; for(int j = 0; j<l;j++){ System.out.print("\t");}; System.out.print("]");  :} 
+
+;

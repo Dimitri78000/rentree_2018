@@ -1,0 +1,22 @@
+parser code {: /* Main() minimal */
+public static void main(String[] args) throws Exception {
+ new parser(new Yylex(new java.io.InputStreamReader(System.in))).parse();
+}
+:}
+
+non terminal Integer Expr;
+non terminal ExprList;
+
+terminal Integer ENTIER;
+terminal NL, PLUS, LP,RP;
+
+precedence left PLUS;
+
+ExprList ::= /*mot vide */  {: :}
+         |  ExprList Expr:e   {: System.out.println(" = "+e); :} NL
+         |  ExprList error  NL
+         ;
+Expr   ::= ENTIER:e    {: RESULT=e; :}
+	| LP Expr:e RP  {: RESULT=e; :}
+	|  Expr:e1 PLUS Expr:e2 {: RESULT=e1+e2; :}
+;

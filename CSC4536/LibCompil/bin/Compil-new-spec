@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "recopie $1.jflex $1.cup  en $2.jflex $2.cup"
+
+cp  $1.jflex $2.jflex
+cp  $1.cup $2.cup
+

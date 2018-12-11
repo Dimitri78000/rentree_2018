@@ -1,0 +1,46 @@
+init with {: System.err.println("Analyse syntaxique de JSON, Ctrl+D pour terminer"); :}
+
+action code 
+{:
+       void PRINT(int n) {  System.out.print(n); }   
+       void PRINT()      {  System.out.print("void"); }
+	   void PRINT_OBJ(Object n) {  String ntostring = n.toString(); System.out.print(ntostring); }
+:}
+
+terminal BEGIN_OBJECT,END_OBJECT,BEGIN_ARRAY,END_ARRAY,NAME_SEPARATOR,VALUE_SEPARATOR;
+terminal FALSE,NULL,TRUE;
+terminal Object STRING;
+terminal Integer ENTIER;
+nonterminal JSON,value,object,member,pair,array,element;
+
+JSON ::= /* vide */
+      | value 
+;
+
+value ::= FALSE {: System.out.print("false");  :} 
+		| NULL {: System.out.print("null");  :} 
+		| TRUE {: System.out.print("true");  :} 
+		| object
+		| array
+		| ENTIER:n      {: PRINT(n); :}
+		| STRING:n   {: PRINT_OBJ(n); :}
+;
+
+object ::= BEGIN_OBJECT {: System.out.println("{"); :} END_OBJECT {:  System.out.println("}");  :} 
+		|	BEGIN_OBJECT {: System.out.println("{"); :} member END_OBJECT {: System.out.println("}");  :} 
+;
+
+member ::= pair
+		| pair VALUE_SEPARATOR {: System.out.println(",");  :} member
+;
+
+pair ::= STRING:n   {: PRINT_OBJ(n); :}  NAME_SEPARATOR {: System.out.print(":");  :} value 
+;
+
+array ::= BEGIN_ARRAY {: System.out.println("["); :} END_ARRAY {:  System.out.println("]");  :} 
+		|	BEGIN_ARRAY {: System.out.println("["); :} element END_ARRAY {: System.out.println("]");  :} 
+;
+
+element ::= value
+		| value VALUE_SEPARATOR {: System.out.println(",");  :} element
+;

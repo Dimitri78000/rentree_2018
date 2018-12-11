@@ -1,0 +1,36 @@
+#!/bin/bash
+if [ "$#" -ne 1 ] ;  then
+    echo "Usage: $0 dirextory-name" >&2
+    exit
+fi
+if [ -e $1 ] ;  then
+    echo "$1 existe !" >&2
+    exit
+fi
+
+echo "Creation d'un projet Jflex+CUP dans le repertoire $1"
+
+readlinkf() { perl -MCwd -le 'print Cwd::abs_path shift' "$1";}
+
+LIBDIR=$(dirname $(dirname $(readlinkf $0 ) ) )
+ROOT=$1
+SPEC=${ROOT}/spec
+SRC=${ROOT}/src
+
+/bin/mkdir ${ROOT}
+/bin/ln -s ${LIBDIR}/lib                  ${ROOT}/lib
+/bin/cp    ${LIBDIR}/gen/Makefile.Cup     ${ROOT}/Makefile
+/bin/cp    ${LIBDIR}/gen/build.xml        ${ROOT}/build.xml
+/bin/cp    ${LIBDIR}/gen/build.prop        ${ROOT}/build.prop
+/bin/cp    ${LIBDIR}/gen/eclipse.classpath    ${ROOT}/.classpath
+/bin/mkdir -p ${SPEC}
+/bin/cp    ${LIBDIR}/spec/Jflex.include   ${SPEC}/
+/bin/cp    ${LIBDIR}/spec/JflexCup.include ${SPEC}/
+/bin/cp    ${LIBDIR}/spec/sample.jflex     ${SPEC}/
+/bin/cp    ${LIBDIR}/spec/sample.cup      ${SPEC}/
+/bin/mkdir -p ${SRC}
+/bin/cp    ${LIBDIR}/src/CupMain*.java     ${SRC}
+/bin/cp    ${LIBDIR}/src/AST*.java     ${SRC}
+
+echo "testing : cd $1; make ; make spec/sample; make run; "
+echo "  aussi : cd $1; ant -p; ant -DNAME=spec/sample; ant run; "

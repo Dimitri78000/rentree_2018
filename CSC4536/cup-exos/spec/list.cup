@@ -1,0 +1,41 @@
+init with {: System.err.println("Grammaires de Liste"); :}
+action code {:
+       void PRN(int n) {  System.out.print(n+" "); }   
+       void PRN()      {  System.out.print(" vide "); }
+:}
+
+terminal NL,COMMA, SEMI;
+terminal Integer ENTIER;
+nonterminal lines, list, list0, lista, listb, listc, listd, listh, listj;
+
+lines ::= /* vide */
+      | lines list  {: System.out.println("OK");  :}  NL
+      | lines error {: System.out.println("BAD"); :}  NL
+;
+
+list ::= listj ;
+
+list0 ::= ENTIER:n      {: PRN(n); :}
+;
+
+lista ::= ENTIER:n {: PRN(n); :}
+		| lista ENTIER:n {: PRN(n); :}
+		;
+
+listb ::= ENTIER:n {: PRN(n); :}
+		| ENTIER:n listb {: PRN(n); :}
+		;
+
+listc ::= /* vide */ {: PRN(); :}
+		| listc COMMA ENTIER:n {: PRN(n); :}
+		;
+
+listd ::= /* vide */ {: PRN(); :}
+		| ENTIER:n listd {: PRN(n); :}
+		;
+
+listh  ::= /* vide */  |   listc ;
+
+listj  ::= /* vide */         {:  PRN();  :}  
+       | listj ENTIER:n SEMI  {:  PRN(n); :}  
+;

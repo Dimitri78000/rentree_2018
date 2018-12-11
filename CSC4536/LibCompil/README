@@ -1,0 +1,30 @@
+#### Environnement pour le cours Compilation CSC4536  ####
+
+
+#### Utilisation simple
+- Mettre le directorie "bin" dans PATH
+
+- Utiliser les commandes de "bin" pour creer un projet
+           Compil-new-jflex  : arboresence pour JFlex Alone
+           Compil-new-cup    : arboresence pour JFlex+CUP
+	   ..
+
+- Decouvrir le reste avec "make" ou "ant"
+
+#### Contenu
+./bin   Quelques commandes pratiques
+
+./gen   fichiers de géneration Makefile et Ant
+
+./lib   les jar executables des outils JFlex, Cup et Mars
+        la librairie java-cup.runtime
+
+./spec  Specification Jflex/Cup :
+           *.include : customisation JFlex
+	   sample*   : exemples de spec
+
+./src   Sources Java
+	   CupMain*  : main() pour analyseur Cup
+	   AST* : classes pour Arbre de Syntaxe Abstraite
+
+
